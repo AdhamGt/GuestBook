@@ -150,7 +150,7 @@ namespace GuestBook.Views
             this.button10.TabIndex = 5;
             this.button10.Text = "Delete";
             this.button10.UseVisualStyleBackColor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click);
+            this.button10.Click += new System.EventHandler(this.DeleteMessage_Click);
             // 
             // button9
             // 
@@ -172,7 +172,7 @@ namespace GuestBook.Views
             this.showRepliesButton.TabIndex = 3;
             this.showRepliesButton.Text = "Show Replies";
             this.showRepliesButton.UseVisualStyleBackColor = false;
-            this.showRepliesButton.Click += new System.EventHandler(this.ReplyButton_Click);
+            this.showRepliesButton.Click += new System.EventHandler(this.showRepliesButton_Click);
             // 
             // ReplyButton
             // 
@@ -228,6 +228,7 @@ namespace GuestBook.Views
             this.button11.TabIndex = 7;
             this.button11.Text = "Delete";
             this.button11.UseVisualStyleBackColor = false;
+            this.button11.Click += new System.EventHandler(this.DeleteMessage_Click);
             // 
             // button2
             // 
@@ -249,6 +250,7 @@ namespace GuestBook.Views
             this.button12.TabIndex = 6;
             this.button12.Text = "Show Replies";
             this.button12.UseVisualStyleBackColor = false;
+            this.button12.Click += new System.EventHandler(this.showRepliesButton_Click);
             // 
             // button3
             // 
@@ -304,6 +306,7 @@ namespace GuestBook.Views
             this.button13.TabIndex = 7;
             this.button13.Text = "Delete";
             this.button13.UseVisualStyleBackColor = false;
+            this.button13.Click += new System.EventHandler(this.DeleteMessage_Click);
             // 
             // button14
             // 
@@ -325,6 +328,7 @@ namespace GuestBook.Views
             this.button4.TabIndex = 3;
             this.button4.Text = "Show Replies";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.showRepliesButton_Click);
             // 
             // button5
             // 
@@ -381,6 +385,7 @@ namespace GuestBook.Views
             this.button15.TabIndex = 7;
             this.button15.Text = "Delete";
             this.button15.UseVisualStyleBackColor = false;
+            this.button15.Click += new System.EventHandler(this.DeleteMessage_Click);
             // 
             // button16
             // 
@@ -402,6 +407,7 @@ namespace GuestBook.Views
             this.button6.TabIndex = 3;
             this.button6.Text = "Show Replies";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.showRepliesButton_Click);
             // 
             // button7
             // 

@@ -14,6 +14,7 @@ namespace GuestBook.Controllers
         public static LoginForm loginForm;
         public static RegisterForm registerForm;
         public static GuestBookForm guestForm;
+        public static MessageForm repliesForm;
         public static LoginForm getLoginForm()
         {
             if (loginForm == null)
@@ -49,9 +50,47 @@ namespace GuestBook.Controllers
             }
 
         }
-        public static void  updateMainScreen()
+        public static void  updateUIFields()
         {
-            guestForm.updateAndDisplayMessages(MessageController.getMessages());
+            if (guestForm != null)
+            {
+                guestForm.updateAndDisplayMessages(MessageController.getMessages());
+            }
+            if(repliesForm != null)
+            {
+                repliesForm.updateAndDisplayMessages(ReplyController.getCurrentMessageReplies());
+            }
+        }
+        public static void ShowReplies()
+        {
+            if (repliesForm == null)
+            {
+                repliesForm = new MessageForm();
+            }
+            else
+            {
+                repliesForm.Close();
+                repliesForm = new MessageForm();
+                repliesForm.DrawUI();
+            }
+
+
+            if (repliesForm != null && !repliesForm.IsDisposed)
+            {
+                repliesForm.Visible = true;
+            }
+            }
+       public static void CloseAllOptionalForms()
+        {
+            if (repliesForm != null)
+            {
+                repliesForm.Close();
+            }
+            if(noteForm != null)
+            {
+                noteForm.Close();
+            }
+       
         }
         public static void ShowMainScreen(string Message)
         {

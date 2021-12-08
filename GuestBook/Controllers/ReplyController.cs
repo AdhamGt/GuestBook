@@ -22,6 +22,21 @@ namespace GuestBook.Controllers
         {
             return replies;
         }
+        public static List<GuestBookReply> getCurrentMessageReplies()
+        {
+            replies = GuestBookReply.getAllMessageReplies(MessageController.getselectedMessage());
+            if (replies != null)
+            {
+                MessageController.getselectedMessage().replies = replies;
+                return replies;
+
+            }
+            else
+            {
+                return null;
+            }
+
+        }
         public static List<GuestBookReply> getReplies(GuestBookMessage message)
         {
             replies = GuestBookReply.getAllMessageReplies(message);

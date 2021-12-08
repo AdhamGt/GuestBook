@@ -45,8 +45,8 @@ namespace GuestBook.Views
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.nextButton = new System.Windows.Forms.Button();
+            this.previousButton = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.messagesFlowLayout.SuspendLayout();
             this.upanel0.SuspendLayout();
@@ -219,24 +219,25 @@ namespace GuestBook.Views
             this.mainPanel.Size = new System.Drawing.Size(767, 100);
             this.mainPanel.TabIndex = 7;
             // 
-            // button1
+            // nextButton
             // 
-            this.button1.Location = new System.Drawing.Point(704, 461);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Next";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.nextButton.Location = new System.Drawing.Point(704, 461);
+            this.nextButton.Name = "nextButton";
+            this.nextButton.Size = new System.Drawing.Size(75, 23);
+            this.nextButton.TabIndex = 11;
+            this.nextButton.Text = "Next";
+            this.nextButton.UseVisualStyleBackColor = true;
+            this.nextButton.Click += new System.EventHandler(this.nextButton_Click);
             // 
-            // button2
+            // previousButton
             // 
-            this.button2.Location = new System.Drawing.Point(609, 461);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Previous";
-            this.button2.UseVisualStyleBackColor = true;
+            this.previousButton.Location = new System.Drawing.Point(609, 461);
+            this.previousButton.Name = "previousButton";
+            this.previousButton.Size = new System.Drawing.Size(75, 23);
+            this.previousButton.TabIndex = 12;
+            this.previousButton.Text = "Previous";
+            this.previousButton.UseVisualStyleBackColor = true;
+            this.previousButton.Click += new System.EventHandler(this.previousButton_Click);
             // 
             // button3
             // 
@@ -246,7 +247,7 @@ namespace GuestBook.Views
             this.button3.TabIndex = 13;
             this.button3.Text = "Refresh";
             this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button3.Click += new System.EventHandler(this.RefreshClick);
             // 
             // MessageForm
             // 
@@ -254,8 +255,8 @@ namespace GuestBook.Views
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 496);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.previousButton);
+            this.Controls.Add(this.nextButton);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.messagesFlowLayout);
             this.Name = "MessageForm";
@@ -284,8 +285,8 @@ namespace GuestBook.Views
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel mainPanel;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button nextButton;
+        private System.Windows.Forms.Button previousButton;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Panel upanel1;
         private System.Windows.Forms.Label label3;

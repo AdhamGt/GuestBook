@@ -23,7 +23,7 @@ namespace GuestBook.Models
         }
         public string getOwnerName()
         {
-            return owner.firstName + " " + owner.lastName;
+            return owner.getFullName();
         }
         public GuestBookMessage(int messageID , string message , GuestBookUser owner)
         {
@@ -58,7 +58,7 @@ namespace GuestBook.Models
             else
             {
                 {
-                    return null;
+                    return messages;
                 }
             }
         }

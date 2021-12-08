@@ -10,9 +10,9 @@ namespace GuestBook.Models
     public class GuestBookReply
     {
         int replyID;
-        string reply;
-        GuestBookMessage replyMessage;
-        GuestBookUser owner;
+        public string reply;
+        public GuestBookMessage replyMessage;
+        public GuestBookUser owner;
         public GuestBookReply(int replyID, string reply, GuestBookMessage message  , GuestBookUser owner)
         {
             this.replyID = replyID;
@@ -23,14 +23,17 @@ namespace GuestBook.Models
         }
 
 
-
+        public string getOwnerName()
+        {
+            return owner.getFullName();
+        }
         public static List<GuestBookReply> getAllMessageReplies(GuestBookMessage message)
         {
             GuestBookDB instance = GuestBookDB.getInstance();
 
 
             List<GuestBookReply> replies = new List<GuestBookReply>();
-            DataTable dt = instance.Query("Select * from " + DatabaseFields.ReplyTable + " Where " + DatabaseFields.messageID + " = " + message.messageID + "and" + DatabaseFields.isDeleted + " = 0 ; ") ;
+            DataTable dt = instance.Query("Select * from " + DatabaseFields.ReplyTable + " Where " + DatabaseFields.messageID + " = " + message.messageID + " and " + DatabaseFields.isDeleted + " = 0 ; ") ;
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -47,9 +50,9 @@ namespace GuestBook.Models
             }
             else
             {
-                {
-                    return null;
-                }
+
+                return replies;
+
             }
         }
         public static bool addReply(string replyText, int messageID,int userID)

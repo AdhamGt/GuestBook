@@ -113,11 +113,21 @@ namespace GuestBook.Views
         }
         public void updateAndDisplayMessages(List<GuestBookMessage> messages)
         {
+            if (messages == null)
+            {
+             
+                return;
+            }
+            else if (messages.Count == 0)
+            {
+               
+                return;
+            }
             CloseAllTabs();
             messagesCount = messages.Count;
             int startindex = pageIndex*pageSize;
             int endindex = startindex + pageSize;
-            for(int i = startindex ,  pIndex = 0; i < endindex && i< messagesCount && pageIndex < 4; i++ , pIndex++ )
+            for(int i = startindex ,  pIndex = 0; i < endindex && i< messagesCount && pIndex < 4; i++ , pIndex++ )
             {
                 uiPanels[pIndex].Controls[4].Text = messages[i].message;
               
@@ -187,15 +197,20 @@ namespace GuestBook.Views
             updateAndDisplayMessages(MessageController.getlocalMessages());
            
         }
+        void CloseForm()
+        {
+            NavigationController.CloseAllOptionalForms();
+            NavigationController.returnToLogin(this);
+        }
         protected override void OnClosed(EventArgs e)
         {
-            NavigationController.returnToLogin(this);
+            CloseForm();
             base.OnClosed(e);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            NavigationController.returnToLogin(this);
+            CloseForm();
             this.Close();
         }
 
@@ -238,7 +253,7 @@ namespace GuestBook.Views
        
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void DeleteMessage_Click(object sender, EventArgs e)
         {
 
             if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
@@ -252,6 +267,18 @@ namespace GuestBook.Views
                 {
                     MessageBox.Show("Failed");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Failed");
+            }
+        }
+
+        private void showRepliesButton_Click(object sender, EventArgs e)
+        {
+            if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
+            {
+                NavigationController.ShowReplies();
             }
             else
             {

@@ -65,7 +65,7 @@ namespace GuestBook.Views
              
             if (MessageController.AddMessage(noteTextBox.Text))
                     {
-                        NavigationController.updateMainScreen();
+                        NavigationController.updateUIFields();
                         MessageBox.Show("Message Sent Successfully");
                 this.Close();
 
@@ -80,7 +80,7 @@ namespace GuestBook.Views
 
                     if (ReplyController.AddCurrentMessageReply(noteTextBox.Text))
                     {
-                        NavigationController.updateMainScreen();
+                        NavigationController.updateUIFields();
                         MessageBox.Show("Reply Sent Successfully");
                         this.Close();
 
@@ -97,7 +97,7 @@ namespace GuestBook.Views
 
                     if (MessageController.UpdateViewedMessage(noteTextBox.Text))
                     {
-                        NavigationController.updateMainScreen();
+                        NavigationController.updateUIFields();
                         MessageBox.Show("Message  Updated Successfully");
                         this.Close();
 
