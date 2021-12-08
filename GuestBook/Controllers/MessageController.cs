@@ -16,10 +16,14 @@ namespace GuestBook.Controllers
         {
             return GuestBookMessage.addMessage(messageText, UserController.getUser().userID);
         }
-
+        
+        public static GuestBookMessage getselectedMessage()
+        {
+            return viewedMessage;
+        }
         public static int selectMessage(int index)
         {
-            if (index > 0 && index < messages.Count)
+            if (index >= 0 && index < messages.Count)
             {
                 viewedMessage = messages[index];
                 return 1;
