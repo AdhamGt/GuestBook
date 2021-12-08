@@ -19,10 +19,37 @@ namespace GuestBook.Views
             messageType = mt;
 
             InitializeComponent();
-           
-            
+            if(messageType == MessageType.GuestBookMessage)
+            {
+                label3.Text = "Type Your Guest Note : ";
+            }
+            else if (messageType == MessageType.GuestBookReply)
+            {
+                label3.Text = "Type Your Reply Note : ";
+            }
+            else if (messageType == MessageType.GuestBookUpdatedMessage)
+            {
+                label3.Text = "Update Your Guest Note : ";
+                noteTextBox.Text = MessageController.getselectedMessage().message;
+            }
+
+
+
         }
 
+        public NoteForm(string message)
+        {
+       
+
+            InitializeComponent();
+            if (messageType == MessageType.GuestBookMessage)
+            {
+                label3.Text = "Update Your Guest Note : ";
+            }
+          
+
+
+        }
         private void label3_Click(object sender, EventArgs e)
         {
 
@@ -37,8 +64,9 @@ namespace GuestBook.Views
 
              
             if (MessageController.AddMessage(noteTextBox.Text))
-            {
-                MessageBox.Show("Message Sent Successfully");
+                    {
+                        NavigationController.updateMainScreen();
+                        MessageBox.Show("Message Sent Successfully");
                 this.Close();
 
             }
@@ -50,13 +78,38 @@ namespace GuestBook.Views
                     break;
                 case MessageType.GuestBookReply:
 
-                    // add reply to message
+                    if (ReplyController.AddCurrentMessageReply(noteTextBox.Text))
+                    {
+                        NavigationController.updateMainScreen();
+                        MessageBox.Show("Reply Sent Successfully");
+                        this.Close();
 
-
+                    }
+                    else
+                    {
+                        MessageBox.Show("Reply Faild");
+                        this.Close();
+                    }
 
 
                     break;
+                case MessageType.GuestBookUpdatedMessage:
 
+                    if (MessageController.UpdateViewedMessage(noteTextBox.Text))
+                    {
+                        NavigationController.updateMainScreen();
+                        MessageBox.Show("Message Successfully Updated Successfully");
+                        this.Close();
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Reply Faild");
+                        this.Close();
+                    }
+
+
+                    break;
             }
         }
     }

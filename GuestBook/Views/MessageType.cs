@@ -8,6 +8,6 @@ namespace GuestBook.Views
 {
    public  enum MessageType
     {
-       GuestBookMessage = 0 , GuestBookReply =1 
+       GuestBookMessage = 0 , GuestBookReply =1  , GuestBookUpdatedMessage = 2
     }
 }

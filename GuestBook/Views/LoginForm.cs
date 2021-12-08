@@ -37,7 +37,7 @@ namespace GuestBook
 
         private void label1_Click_1(object sender, EventArgs e)
         {
-            UserController.ShowRegister();
+            NavigationController.ShowRegister();
         }
 
         protected override void OnClosed(EventArgs e)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GuestBook.Models
 {
-    class GuestBookUser
+    public class GuestBookUser
     {
         public int userID;
        public string username;

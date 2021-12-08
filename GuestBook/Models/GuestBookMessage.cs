@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GuestBook.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace GuestBook.Models
 {
-    class GuestBookMessage
+   public class GuestBookMessage
     {
-        int messageID;
+        public int messageID;
         public string message;
-        GuestBookUser owner;
-        List<GuestBookReply> replies = new List<GuestBookReply>();
+        public GuestBookUser owner;
+        public List<GuestBookReply> replies = new List<GuestBookReply>();
 
 
 
@@ -40,7 +41,7 @@ namespace GuestBook.Models
 
 
             List<GuestBookMessage> messages = new List<GuestBookMessage>();
-            DataTable dt = instance.Query("Select * from " + DatabaseFields.MessageTable + " INNER JOIN " + DatabaseFields.UserTable + " ON " + DatabaseFields.UserTable+"."+DatabaseFields.userID +" = "+ DatabaseFields.MessageTable+"."+DatabaseFields.userID+";");
+            DataTable dt = instance.Query("Select * from " + DatabaseFields.MessageTable + " INNER JOIN " + DatabaseFields.UserTable + " ON " + DatabaseFields.UserTable+"."+DatabaseFields.userID +" = "+ DatabaseFields.MessageTable+"."+DatabaseFields.userID+" Where "+  DatabaseFields.MessageTable + "."+ DatabaseFields.isDeleted + " = 0 ; ");
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -78,13 +79,37 @@ namespace GuestBook.Models
                 return false;
             }
         }
-        public bool verifyOwner(GuestBookUser user)
+        public static bool UpdateMessage(string messageText, int messageID)
         {
-            if(user.userID == owner.userID)
+            GuestBookDB instance = GuestBookDB.getInstance();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add(DatabaseFields.Message_messageText, messageText);
+            parameters.Add(DatabaseFields.messageID, messageID);
+            int affected = instance.Update(DatabaseFields.MessageTable, parameters);
+            if (affected == 1)
             {
                 return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
+        }
+        public static bool DeleteMessage( int messageID)
+        {
+            GuestBookDB instance = GuestBookDB.getInstance();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add(DatabaseFields.isDeleted, 1);
+            parameters.Add(DatabaseFields.messageID, messageID);
+            int affected = instance.Update(DatabaseFields.MessageTable, parameters);
+            if (affected == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

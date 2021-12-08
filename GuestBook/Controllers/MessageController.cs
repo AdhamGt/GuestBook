@@ -12,6 +12,10 @@ namespace GuestBook.Controllers
 
         static List<GuestBookMessage> messages = new List<GuestBookMessage>();
         static GuestBookMessage viewedMessage;
+
+
+
+       
         public static bool AddMessage(string messageText)
         {
             return GuestBookMessage.addMessage(messageText, UserController.getUser().userID);
@@ -21,6 +25,19 @@ namespace GuestBook.Controllers
         {
             return viewedMessage;
         }
+
+
+
+
+       public static bool UpdateViewedMessage(string updatedText)
+        {
+           return GuestBookMessage.UpdateMessage(updatedText, viewedMessage.messageID);
+        }
+        public static bool DeleteViewedMessage()
+        {
+            return GuestBookMessage.DeleteMessage(viewedMessage.messageID);
+        }
+
         public static int selectMessage(int index)
         {
             if (index >= 0 && index < messages.Count)

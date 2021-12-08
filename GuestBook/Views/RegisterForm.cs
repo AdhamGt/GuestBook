@@ -23,7 +23,7 @@ namespace GuestBook.Views
             if (UserController.RegisterUser(usernameTextBox.Text, passwordTextBox.Text, firstNameTextbox.Text, lastNameTextBox.Text))
             {
                 MessageBox.Show("Registered");
-                UserController.returnToLogin(this);
+                NavigationController.returnToLogin(this);
                 this.Hide();
             }
             else
@@ -45,7 +45,7 @@ namespace GuestBook.Views
 
         private void label3_Click(object sender, EventArgs e)
         {
-            UserController.returnToLogin(this);
+            NavigationController.returnToLogin(this);
           
         }
 
@@ -56,7 +56,7 @@ namespace GuestBook.Views
 
         protected override void OnClosed(EventArgs e)
         {
-            UserController.returnToLogin(this);
+            NavigationController.returnToLogin(this);
             base.OnClosed(e);
         }
     }

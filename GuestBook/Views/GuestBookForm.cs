@@ -20,7 +20,6 @@ namespace GuestBook.Views
         int pageIndex = 0;
         int messagesCount = 0;
         int pageSize = 4;
-
         void addPanels()
         {
             uiPanels.Add(panel0);
@@ -36,25 +35,31 @@ namespace GuestBook.Views
             for (int i = 0; i < uiPanels.Count; i++)
             {
 
-                try
-                {
-
-
                     int index = uiPanels[i].Controls.GetChildIndex(button);
 
                         if(index == buttonIndex )
                         {
                            return i;
                         }
-                }
-                catch
-                {
-                    continue;
-                }
-
+ 
             }
             return -1;
         }
+
+
+
+
+
+
+      public  void DrawUI()
+        {
+            pageIndex = 0;
+             messagesCount = 0;
+            GreetUser();
+            updateAndDisplayMessages(MessageController.getMessages());
+        }
+
+
             public GuestBookForm(string Message)
         {
             InitializeComponent();
@@ -97,7 +102,7 @@ namespace GuestBook.Views
                 uiPanels[i].Visible = false;
             }
         }
-        void updateAndDisplayMessages(List<GuestBookMessage> messages)
+        public void updateAndDisplayMessages(List<GuestBookMessage> messages)
         {
             CloseAllTabs();
             messagesCount = messages.Count;
@@ -105,18 +110,34 @@ namespace GuestBook.Views
             int endindex = startindex + pageSize;
             for(int i = startindex ,  pIndex = 0; i < endindex && i< messagesCount && pageIndex < 4; i++ , pIndex++ )
             {
-                uiPanels[pIndex].Controls[2].Text = messages[i].message;
-                uiPanels[pIndex].Controls[3].Text = messages[i].getOwnerName();
+                uiPanels[pIndex].Controls[4].Text = messages[i].message;
+              
+              
+                if(UserController.verifyOwner(messages[i].owner.userID))
+               {
+                    uiPanels[pIndex].Controls[5].Text = messages[i].getOwnerName()+ " (You) ";
+                    uiPanels[pIndex].Controls[5].ForeColor = Color.Red;
+                   uiPanels[pIndex].Controls[0].Visible = true;
+                  uiPanels[pIndex].Controls[1].Visible = true;
+              }
+              else
+              {
+                    uiPanels[pIndex].Controls[5].Text = messages[i].getOwnerName();
+                    uiPanels[pIndex].Controls[5].ForeColor = Color.Blue;
+                    uiPanels[pIndex].Controls[0].Visible = false;
+                  uiPanels[pIndex].Controls[1].Visible = false;
+              }
                 uiPanels[pIndex].Visible = true;
             }
             updateUI();
         }
         void GreetUser()
         {
-            GuestBookUser user = UserController.getUser();
-            if (user != null)
+            
+            if (UserController.getUser() != null)
             {
-                greetingLabel.Text = "Welcome " + user.getFullName();
+               greetingLabel.Text = "Welcome " + UserController.getUser().getFullName();
+          
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -136,14 +157,9 @@ namespace GuestBook.Views
 
         }
 
-        private void button1_Click_2(object sender, EventArgs e)
-        {
-
-        }
-
         private void button1_Click_3(object sender, EventArgs e)
         {
-            UserController.ShowNoteScreen(MessageType.GuestBookMessage);
+            NavigationController.ShowNoteScreen(MessageType.GuestBookMessage);
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
@@ -164,12 +180,14 @@ namespace GuestBook.Views
         }
         protected override void OnClosed(EventArgs e)
         {
-            Application.Exit();
+            NavigationController.returnToLogin(this);
+            base.OnClosed(e);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            UserController.returnToLogin(this);
+            NavigationController.returnToLogin(this);
+            this.Close();
         }
 
 
@@ -180,15 +198,42 @@ namespace GuestBook.Views
         }
         private void ReplyButton_Click(object sender, EventArgs e)
         {
-
-           int result =  MessageController.selectMessage(GetButtonIndex((Button)sender));
+       
+            int result =  MessageController.selectMessage(0);
             if (result == 1)
             {
-                UserController.ShowNoteScreen(MessageType.GuestBookReply);
+                NavigationController.ShowNoteScreen(MessageType.GuestBookReply);
             }
             else
             {
                 MessageBox.Show("Invalid Message");
+            }
+        }
+
+        private void GuestBookForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            MessageController.selectMessage(0);
+         
+            NavigationController.ShowNoteScreen(MessageType.GuestBookUpdatedMessage);
+       
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            MessageController.selectMessage(0);
+            if (MessageController.DeleteViewedMessage())
+            {
+                MessageBox.Show("Deleted");
+                updateAndDisplayMessages(MessageController.getMessages());
+            }
+            else
+            {
+                MessageBox.Show("Failed");
             }
         }
     }

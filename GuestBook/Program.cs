@@ -23,7 +23,7 @@ namespace GuestBook
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
         
-            Application.Run(UserController.getLoginForm());
+            Application.Run(NavigationController.getLoginForm());
         }
     }
 }

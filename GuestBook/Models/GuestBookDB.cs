@@ -30,7 +30,37 @@ namespace GuestBook.Models
         }
 
 
+        string GenerateUpdate(string Table, Dictionary<string, object> Parameters)
+        {
+            string query = "Update " + Table + " Set ";
+        
+            int dictCounter = 0;
+          
 
+            foreach (var (key, value) in Parameters)
+
+            {
+                if (dictCounter + 1 == Parameters.Count)
+                {
+                    query += " Where " + key + " = " + value;
+                }
+                else
+                {
+                    query += key + " = " + " ' " + value + "'";
+                }
+                if (dictCounter + 2 < Parameters.Count)
+                {
+                    query += ",";
+          
+                }
+                
+                dictCounter++;
+            }
+        
+       
+
+            return query;
+        }
 
         string GenerateQuery(string Table , Dictionary<string,object>Parameters , out List<SqlParameter> SqlParamters)
         {
@@ -81,7 +111,30 @@ namespace GuestBook.Models
 
             
         }
-      public DataTable Query(string command)
+        public int Update(string Table, Dictionary<string, Object> Parameters)
+        {
+
+
+            connection.Open();
+            List<SqlParameter> sqlParamters;
+
+            string query = GenerateUpdate(Table, Parameters);
+
+            SqlCommand UpdateCommand = new SqlCommand(query, connection);
+           
+
+
+            int rowsAffeced = UpdateCommand.ExecuteNonQuery();
+
+
+            connection.Close();
+            return rowsAffeced;
+
+
+
+
+        }
+        public DataTable Query(string command)
         {
            
                 connection.Open();
