@@ -17,6 +17,7 @@ namespace GuestBook.Views
     {
 
         List<System.Windows.Forms.Panel> uiPanels = new List<Panel>();
+        List<ListUIHandler> handlers = new List<ListUIHandler>();
         int pageIndex = 0;
         int messagesCount = 0;
         int pageSize = 4;
@@ -27,21 +28,28 @@ namespace GuestBook.Views
             uiPanels.Add(panel2);
             uiPanels.Add(panel3);
         }
-
+        void FillHandler()
+        {
+           
+            for (int i = 0; i < uiPanels.Count; i++)
+            {
+                ListUIHandler handler = new ListUIHandler();
+                handler.panelIndex = i;
+                    handler.buttons.AddRange(uiPanels[i].Controls.OfType<Button>());
+                handlers.Add(handler);
+            }
+            
+        }
 
         int FindButtonParent(Button button)
         {
-            int buttonIndex = 1;
-            for (int i = 0; i < uiPanels.Count; i++)
+            for (int i = 0; i < handlers.Count; i++)
             {
-
-                    int index = uiPanels[i].Controls.GetChildIndex(button);
-
-                        if(index == buttonIndex )
-                        {
-                           return i;
-                        }
- 
+                if (handlers[i].FindIndexByButton(button))
+                {
+                    return handlers[i].panelIndex;
+                   
+                }
             }
             return -1;
         }
@@ -64,6 +72,7 @@ namespace GuestBook.Views
         {
             InitializeComponent();
             addPanels();
+            FillHandler();
             GreetUser();
             updateAndDisplayMessages(MessageController.getMessages());
             
@@ -85,7 +94,7 @@ namespace GuestBook.Views
                 previousButton.Visible = false;
                
             }
-            if (pageIndex*pageSize + 4 >= messagesCount)
+            if (pageIndex*pageSize + pageSize >= messagesCount)
             {
                 nextButton.Visible = false;
             }
@@ -198,9 +207,10 @@ namespace GuestBook.Views
         }
         private void ReplyButton_Click(object sender, EventArgs e)
         {
-       
-            int result =  MessageController.selectMessage(0);
-            if (result == 1)
+
+
+
+            if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
             {
                 NavigationController.ShowNoteScreen(MessageType.GuestBookReply);
             }
@@ -215,21 +225,33 @@ namespace GuestBook.Views
 
         }
 
-        private void button9_Click(object sender, EventArgs e)
+        private void UpdateMessage_Click(object sender, EventArgs e)
         {
-            MessageController.selectMessage(0);
-         
-            NavigationController.ShowNoteScreen(MessageType.GuestBookUpdatedMessage);
+            if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
+            {
+                NavigationController.ShowNoteScreen(MessageType.GuestBookUpdatedMessage);
+            }
+            else
+            {
+                MessageBox.Show("Failed");
+            }
        
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            MessageController.selectMessage(0);
-            if (MessageController.DeleteViewedMessage())
+
+            if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
             {
-                MessageBox.Show("Deleted");
-                updateAndDisplayMessages(MessageController.getMessages());
+                if (MessageController.DeleteViewedMessage())
+                {
+                    MessageBox.Show("Deleted");
+                    updateAndDisplayMessages(MessageController.getMessages());
+                }
+                else
+                {
+                    MessageBox.Show("Failed");
+                }
             }
             else
             {

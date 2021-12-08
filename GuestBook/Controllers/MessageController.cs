@@ -38,14 +38,14 @@ namespace GuestBook.Controllers
             return GuestBookMessage.DeleteMessage(viewedMessage.messageID);
         }
 
-        public static int selectMessage(int index)
+        public static bool selectMessage(int index)
         {
             if (index >= 0 && index < messages.Count)
             {
                 viewedMessage = messages[index];
-                return 1;
+                return true;
             }
-            return -1;
+            return false;
         }
       public   static List<GuestBookMessage> getlocalMessages()
         {

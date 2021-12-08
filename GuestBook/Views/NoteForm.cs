@@ -98,7 +98,7 @@ namespace GuestBook.Views
                     if (MessageController.UpdateViewedMessage(noteTextBox.Text))
                     {
                         NavigationController.updateMainScreen();
-                        MessageBox.Show("Message Successfully Updated Successfully");
+                        MessageBox.Show("Message  Updated Successfully");
                         this.Close();
 
                     }

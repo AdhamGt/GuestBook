@@ -10,8 +10,8 @@ namespace GuestBook.Views
 {
    public class ListUIHandler
     {
-        int messageIndex;
-       public   List<Button> buttons;
+        public int panelIndex;
+       public   List<Button> buttons = new List<Button>();
         public Panel panel;
 
 

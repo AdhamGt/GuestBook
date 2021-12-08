@@ -161,7 +161,7 @@ namespace GuestBook.Views
             this.button9.TabIndex = 4;
             this.button9.Text = "Edit";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.button9.Click += new System.EventHandler(this.UpdateMessage_Click);
             // 
             // showRepliesButton
             // 
@@ -238,6 +238,7 @@ namespace GuestBook.Views
             this.button2.TabIndex = 3;
             this.button2.Text = "Edit";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.UpdateMessage_Click);
             // 
             // button12
             // 
@@ -313,6 +314,7 @@ namespace GuestBook.Views
             this.button14.TabIndex = 6;
             this.button14.Text = "Edit";
             this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.UpdateMessage_Click);
             // 
             // button4
             // 
@@ -389,6 +391,7 @@ namespace GuestBook.Views
             this.button16.TabIndex = 6;
             this.button16.Text = "Edit";
             this.button16.UseVisualStyleBackColor = false;
+            this.button16.Click += new System.EventHandler(this.UpdateMessage_Click);
             // 
             // button6
             // 
