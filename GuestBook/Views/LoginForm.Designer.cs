@@ -50,6 +50,7 @@ namespace GuestBook
             // 
             this.passwordTextBox.Location = new System.Drawing.Point(226, 210);
             this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(305, 23);
             this.passwordTextBox.TabIndex = 1;
             // 

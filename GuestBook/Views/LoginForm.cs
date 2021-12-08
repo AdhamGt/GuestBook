@@ -34,7 +34,11 @@ namespace GuestBook
           
 
         }
-
+        public void ResetTextBoxes()
+        {
+            usernameTextBox.Text = "";
+            passwordTextBox.Text = "";
+        }
         private void label1_Click_1(object sender, EventArgs e)
         {
             NavigationController.ShowRegister();

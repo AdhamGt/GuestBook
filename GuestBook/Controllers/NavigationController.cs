@@ -43,10 +43,12 @@ namespace GuestBook.Controllers
             if (loginForm != null)
             {
                 loginForm.Visible = true;
+                loginForm.ResetTextBoxes();
             }
             else
             {
                 getLoginForm().Visible = true;
+                loginForm.ResetTextBoxes();
             }
 
         }
@@ -142,7 +144,8 @@ namespace GuestBook.Controllers
         {
             UserController.resetUser();
             openForm.Hide();
-            NavigationController.showtLoginForm();
+
+             showtLoginForm();
         }
     }
 }
