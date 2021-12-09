@@ -19,6 +19,7 @@ namespace GuestBook.Views
         int pageIndex = 0;
         int repliesCount = 0;
         int pageSize = 4;
+
         void addPanels()
         {
             uiPanels.Add(upanel0);
@@ -62,7 +63,16 @@ namespace GuestBook.Views
             repliesCount = replies.Count;
             int startindex = pageIndex * pageSize;
             int endindex = startindex + pageSize;
-            mainPanel.Controls[1].Text = MessageController.getselectedMessage().getOwnerName();
+
+            if (UserController.verifyOwner(MessageController.getselectedMessage().owner.userID))
+            {
+                mainPanel.Controls[1].ForeColor = Color.Red;
+            }
+            else
+            {
+                mainPanel.Controls[1].ForeColor = Color.Blue;
+            }
+                mainPanel.Controls[1].Text = MessageController.getselectedMessage().getOwnerName()+ " (You) ";
             mainPanel.Controls[0].Text = MessageController.getselectedMessage().message;
             for (int i = startindex, pIndex = 0; i < endindex && i < repliesCount && pIndex < 4; i++, pIndex++)
             {

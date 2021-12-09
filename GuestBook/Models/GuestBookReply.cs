@@ -33,14 +33,14 @@ namespace GuestBook.Models
 
 
             List<GuestBookReply> replies = new List<GuestBookReply>();
-            DataTable dt = instance.Query("Select * from " + DatabaseFields.ReplyTable + " Where " + DatabaseFields.messageID + " = " + message.messageID + " and " + DatabaseFields.isDeleted + " = 0 ; ") ;
+            DataTable dt = instance.Query("Select * from " + DatabaseFields.ReplyTable + " INNER JOIN " + DatabaseFields.UserTable + " ON " + DatabaseFields.UserTable + "." + DatabaseFields.userID + " = " + DatabaseFields.ReplyTable + "." + DatabaseFields.userID+ " Where " + DatabaseFields.messageID + " = " + message.messageID + " and " + DatabaseFields.isDeleted + " = 0 ; ") ;
             if (dt.Rows.Count > 0)
             {
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
 
 
-                    GuestBookReply  reply = new GuestBookReply((int)dt.Rows[i][DatabaseFields.replyID], dt.Rows[i][DatabaseFields.Reply_replyText].ToString() , message , message.owner);
+                    GuestBookReply  reply = new GuestBookReply((int)dt.Rows[i][DatabaseFields.replyID], dt.Rows[i][DatabaseFields.Reply_replyText].ToString() , message , new GuestBookUser((int)(dt.Rows[i][DatabaseFields.userID]), dt.Rows[i][DatabaseFields.User_username].ToString(), dt.Rows[i][DatabaseFields.User_password].ToString(), dt.Rows[i][DatabaseFields.User_firstName].ToString(), dt.Rows[i][DatabaseFields.User_lastName].ToString()));
 
                     replies.Add(reply);
 

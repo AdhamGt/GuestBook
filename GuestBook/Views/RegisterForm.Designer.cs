@@ -48,7 +48,7 @@ namespace GuestBook.Views
             this.signUpButton.Location = new System.Drawing.Point(202, 219);
             this.signUpButton.Name = "signUpButton";
             this.signUpButton.Size = new System.Drawing.Size(133, 23);
-            this.signUpButton.TabIndex = 10;
+            this.signUpButton.TabIndex = 11;
             this.signUpButton.Text = "SignUp";
             this.signUpButton.UseVisualStyleBackColor = true;
             this.signUpButton.Click += new System.EventHandler(this.loginButton_Click);
@@ -76,8 +76,9 @@ namespace GuestBook.Views
             // 
             this.passwordTextBox.Location = new System.Drawing.Point(125, 140);
             this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(305, 23);
-            this.passwordTextBox.TabIndex = 7;
+            this.passwordTextBox.TabIndex = 9;
             // 
             // usernameTextBox
             // 
@@ -100,8 +101,9 @@ namespace GuestBook.Views
             // 
             this.confirmPasswordTextBox.Location = new System.Drawing.Point(125, 169);
             this.confirmPasswordTextBox.Name = "confirmPasswordTextBox";
+            this.confirmPasswordTextBox.PasswordChar = '*';
             this.confirmPasswordTextBox.Size = new System.Drawing.Size(305, 23);
-            this.confirmPasswordTextBox.TabIndex = 11;
+            this.confirmPasswordTextBox.TabIndex = 10;
             // 
             // label1
             // 
@@ -114,10 +116,10 @@ namespace GuestBook.Views
             // 
             // lastNameTextBox
             // 
-            this.lastNameTextBox.Location = new System.Drawing.Point(125, 109);
+            this.lastNameTextBox.Location = new System.Drawing.Point(125, 111);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(305, 23);
-            this.lastNameTextBox.TabIndex = 13;
+            this.lastNameTextBox.TabIndex = 8;
             // 
             // label2
             // 
@@ -133,7 +135,7 @@ namespace GuestBook.Views
             this.firstNameTextbox.Location = new System.Drawing.Point(125, 80);
             this.firstNameTextbox.Name = "firstNameTextbox";
             this.firstNameTextbox.Size = new System.Drawing.Size(305, 23);
-            this.firstNameTextbox.TabIndex = 15;
+            this.firstNameTextbox.TabIndex = 7;
             // 
             // label3
             // 
