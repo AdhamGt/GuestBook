@@ -29,6 +29,7 @@ namespace GuestBook.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteForm));
             this.label3 = new System.Windows.Forms.Label();
             this.noteTextBox = new System.Windows.Forms.RichTextBox();
             this.nextButton = new System.Windows.Forms.Button();
@@ -70,8 +71,9 @@ namespace GuestBook.Views
             this.Controls.Add(this.label3);
             this.Controls.Add(this.noteTextBox);
             this.Controls.Add(this.nextButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NoteForm";
-            this.Text = "NoteForm";
+            this.Text = "Note";
             this.ResumeLayout(false);
             this.PerformLayout();
 

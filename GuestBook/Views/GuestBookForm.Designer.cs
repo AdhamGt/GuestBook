@@ -31,6 +31,7 @@ namespace GuestBook.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GuestBookForm));
             this.nextButton = new System.Windows.Forms.Button();
             this.previousButton = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
@@ -482,6 +483,7 @@ namespace GuestBook.Views
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.previousButton);
             this.Controls.Add(this.nextButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GuestBookForm";
             this.Text = "GuestBook";
             this.Load += new System.EventHandler(this.GuestBookForm_Load);

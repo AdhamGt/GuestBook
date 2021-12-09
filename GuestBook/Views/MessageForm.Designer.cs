@@ -29,6 +29,7 @@ namespace GuestBook.Views
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageForm));
             this.messagesFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.upanel0 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -259,6 +260,7 @@ namespace GuestBook.Views
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.messagesFlowLayout);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MessageForm";
             this.Text = "Replies";
             this.messagesFlowLayout.ResumeLayout(false);
