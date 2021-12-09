@@ -14,7 +14,7 @@ namespace GuestBook.Controllers
         public static LoginForm loginForm;
         public static RegisterForm registerForm;
         public static GuestBookForm guestForm;
-        public static MessageForm repliesForm;
+        public static ReplyForm repliesForm;
         public static LoginForm getLoginForm()
         {
             if (loginForm == null)
@@ -67,12 +67,12 @@ namespace GuestBook.Controllers
         {
             if (repliesForm == null)
             {
-                repliesForm = new MessageForm();
+                repliesForm = new ReplyForm();
             }
             else
             {
                 repliesForm.Close();
-                repliesForm = new MessageForm();
+                repliesForm = new ReplyForm();
           
             }
 

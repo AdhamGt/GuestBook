@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace GuestBook.Views
 {
-    public partial class MessageForm : Form
+    public partial class ReplyForm : Form
     {
         List<System.Windows.Forms.Panel> uiPanels = new List<Panel>();
  
@@ -28,7 +28,7 @@ namespace GuestBook.Views
             uiPanels.Add(upanel3);
         }
       
-        public MessageForm()
+        public ReplyForm()
         {
 
             InitializeComponent();

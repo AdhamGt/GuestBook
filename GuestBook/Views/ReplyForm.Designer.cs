@@ -1,7 +1,7 @@
 ﻿
 namespace GuestBook.Views
 {
-    partial class MessageForm
+    partial class ReplyForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace GuestBook.Views
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MessageForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReplyForm));
             this.messagesFlowLayout = new System.Windows.Forms.FlowLayoutPanel();
             this.upanel0 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
