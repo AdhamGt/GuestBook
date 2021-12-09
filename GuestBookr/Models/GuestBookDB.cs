@@ -72,7 +72,7 @@ namespace GuestBook.Models
             foreach (var item in Parameters)
             {
                 query += item.Key;
-                values += "@" + item.Value;
+                values += "@" + item.Key;
                 if (dictCounter + 1 < Parameters.Count)
                 {
                     query += ",";
