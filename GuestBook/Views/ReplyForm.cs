@@ -66,13 +66,15 @@ namespace GuestBook.Views
 
             if (UserController.verifyOwner(MessageController.getselectedMessage().owner.userID))
             {
+                mainPanel.Controls[1].Text = MessageController.getselectedMessage().getOwnerName() + " (You) ";
                 mainPanel.Controls[1].ForeColor = Color.Red;
             }
             else
             {
+                mainPanel.Controls[1].Text = MessageController.getselectedMessage().getOwnerName();
                 mainPanel.Controls[1].ForeColor = Color.Blue;
             }
-                mainPanel.Controls[1].Text = MessageController.getselectedMessage().getOwnerName()+ " (You) ";
+              
             mainPanel.Controls[0].Text = MessageController.getselectedMessage().message;
             for (int i = startindex, pIndex = 0; i < endindex && i < repliesCount && pIndex < 4; i++, pIndex++)
             {

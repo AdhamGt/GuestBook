@@ -61,10 +61,7 @@ namespace GuestBook.Controllers
         public static bool RegisterUser(string username, string password , string firstName , string lastName)
         {
             bool successful = GuestBookUser.addUser(username, password, firstName, lastName);
-            if(successful)
-            {
-                NavigationController.ShowMainScreen("Registered Successfully");
-            }
+           
 
             return successful;
         }
