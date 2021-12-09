@@ -18,18 +18,60 @@ namespace GuestBook.Views
             InitializeComponent();
         }
 
+        List<string> errors = new List<string>();
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if (UserController.RegisterUser(usernameTextBox.Text, passwordTextBox.Text, firstNameTextbox.Text, lastNameTextBox.Text))
+
+            if(FieldValidator.ValidateNameStructure(firstNameTextbox.Text))
             {
-                MessageBox.Show("Registered");
-                NavigationController.returnToLogin(this);
-                this.Hide();
+                if (FieldValidator.ValidateNameStructure(lastNameTextBox.Text))
+                {
+                    if (FieldValidator.ValidateUsernameStructure(usernameTextBox.Text))
+                    {
+                        if (FieldValidator.ValidatePasswordStructure(passwordTextBox.Text))
+                        {
+                            if (FieldValidator.VerifyPassword(passwordTextBox.Text, confirmPasswordTextBox.Text))
+                            {
+                                if (UserController.RegisterUser(usernameTextBox.Text, passwordTextBox.Text, firstNameTextbox.Text, lastNameTextBox.Text))
+                                {
+
+                                    MessageBox.Show("Registered");
+                                    NavigationController.returnToLogin(this);
+                                    this.Hide();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Username Already Exists");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Passwords Don't Match");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Wrong Password Format ");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong Username Format ");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Wrong LastName Format ");
+                }
             }
             else
             {
-                MessageBox.Show("Already Exists");
+                MessageBox.Show("Wrong FirstName Format ");
+
             }
+
+           
+
 
         }
 

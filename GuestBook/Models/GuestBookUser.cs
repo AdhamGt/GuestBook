@@ -17,9 +17,23 @@ namespace GuestBook.Models
 
 
 
+
+
+
+        public string CapitalizeFirstLetter(string name)
+        {
+          
+                if (string.IsNullOrEmpty(name))
+                {
+                    return string.Empty;
+                }
+              
+                return char.ToUpper(name[0]) + name.Substring(1).ToLower();
+            
+        }
         public string getFullName()
         {
-            return firstName + " " + lastName;
+            return CapitalizeFirstLetter(firstName) + " " + CapitalizeFirstLetter(lastName);
         }
         public List<GuestBookMessage> userMessages = new List<GuestBookMessage>();
         public  GuestBookUser(int userID , string username, string password,string firstName , string lastName)

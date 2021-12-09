@@ -99,13 +99,27 @@ namespace GuestBook.Models
 
             SqlCommand UpdateCommand = new SqlCommand(query,connection);
             UpdateCommand.Parameters.AddRange(sqlParamters.ToArray());
-          
-           
-            int rowsAffeced = UpdateCommand.ExecuteNonQuery();
 
 
-                     connection.Close();
+            try
+            {
+                int rowsAffeced = UpdateCommand.ExecuteNonQuery();
+
+
+
+                connection.Close();
+
                 return rowsAffeced;
+            }
+            catch
+            {
+                connection.Close();
+
+                return 0;
+            }
+
+
+          
                     
           
 
@@ -121,14 +135,28 @@ namespace GuestBook.Models
             string query = GenerateUpdate(Table, Parameters);
 
             SqlCommand UpdateCommand = new SqlCommand(query, connection);
-           
 
 
-            int rowsAffeced = UpdateCommand.ExecuteNonQuery();
 
 
-            connection.Close();
-            return rowsAffeced;
+            try
+            {
+                int rowsAffeced = UpdateCommand.ExecuteNonQuery();
+
+
+
+                connection.Close();
+
+                return rowsAffeced;
+            }
+            catch
+            {
+                connection.Close();
+
+                return 0;
+            }
+
+
 
 
 

@@ -57,59 +57,66 @@ namespace GuestBook.Views
 
         private void nextButton_Click(object sender, EventArgs e)
         {
-            switch (messageType)
+            if (!FieldValidator.isEmptyOrNull(noteTextBox.Text))
             {
+                switch (messageType)
+                {
 
-                case MessageType.GuestBookMessage:
+                    case MessageType.GuestBookMessage:
 
-             
-            if (MessageController.AddMessage(noteTextBox.Text))
-                    {
-                        NavigationController.updateUIFields();
-                        MessageBox.Show("Message Sent Successfully");
-                this.Close();
 
+                        if (MessageController.AddMessage(noteTextBox.Text))
+                        {
+                            NavigationController.updateUIFields();
+                            MessageBox.Show("Message Sent Successfully");
+                            this.Close();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Message Faild");
+                            this.Close();
+                        }
+                        break;
+                    case MessageType.GuestBookReply:
+
+                        if (ReplyController.AddCurrentMessageReply(noteTextBox.Text))
+                        {
+                            NavigationController.updateUIFields();
+                            MessageBox.Show("Reply Sent Successfully");
+                            this.Close();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Reply Faild");
+                            this.Close();
+                        }
+
+
+                        break;
+                    case MessageType.GuestBookUpdatedMessage:
+
+                        if (MessageController.UpdateViewedMessage(noteTextBox.Text))
+                        {
+                            NavigationController.updateUIFields();
+                            MessageBox.Show("Message  Updated Successfully");
+                            this.Close();
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Reply Faild");
+                            this.Close();
+                        }
+
+
+                        break;
+                }
             }
             else
             {
-                MessageBox.Show("Message Faild");
-                this.Close();
-            }
-                    break;
-                case MessageType.GuestBookReply:
-
-                    if (ReplyController.AddCurrentMessageReply(noteTextBox.Text))
-                    {
-                        NavigationController.updateUIFields();
-                        MessageBox.Show("Reply Sent Successfully");
-                        this.Close();
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Reply Faild");
-                        this.Close();
-                    }
-
-
-                    break;
-                case MessageType.GuestBookUpdatedMessage:
-
-                    if (MessageController.UpdateViewedMessage(noteTextBox.Text))
-                    {
-                        NavigationController.updateUIFields();
-                        MessageBox.Show("Message  Updated Successfully");
-                        this.Close();
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Reply Faild");
-                        this.Close();
-                    }
-
-
-                    break;
+                MessageBox.Show("Message is Empty !");
             }
         }
     }

@@ -54,15 +54,7 @@ namespace GuestBook.Controllers
         public static List<GuestBookMessage> getMessages()
         {
             messages =  GuestBookMessage.getAllMessages();
-            if(messages != null)
-            {
-                return messages;
-
-            }
-            else
-            {
-                return null;
-            }
+            return messages;
 
         }
     }
