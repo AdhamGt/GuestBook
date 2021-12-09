@@ -71,6 +71,7 @@ namespace GuestBook.Views
             this.Controls.Add(this.label3);
             this.Controls.Add(this.noteTextBox);
             this.Controls.Add(this.nextButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NoteForm";
             this.Text = "Note";

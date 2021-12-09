@@ -117,6 +117,7 @@ namespace GuestBook
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.usernameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.Text = "Login";

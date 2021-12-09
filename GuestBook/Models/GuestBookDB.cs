@@ -13,8 +13,8 @@ namespace GuestBook.Models
     {
         static GuestBookDB instance;
         SqlConnection connection;
-        string connectionString = (@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\adham\Desktop\db.mdf;Integrated Security=True;Connect Timeout=30");
-        public static GuestBookDB getInstance()
+        string connectionString;
+            public static GuestBookDB getInstance()
         {
            if(instance == null)
             {
@@ -26,6 +26,7 @@ namespace GuestBook.Models
         }
         public  GuestBookDB()
         {
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=" + Directory.GetCurrentDirectory() + @"\GuestBook.mdf;Integrated Security=True;Connect Timeout=30";
             connection = new SqlConnection(connectionString);
         }
 

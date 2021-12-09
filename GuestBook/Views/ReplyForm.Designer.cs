@@ -250,7 +250,7 @@ namespace GuestBook.Views
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.RefreshClick);
             // 
-            // MessageForm
+            // ReplyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -260,8 +260,9 @@ namespace GuestBook.Views
             this.Controls.Add(this.nextButton);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.messagesFlowLayout);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "MessageForm";
+            this.Name = "ReplyForm";
             this.Text = "Replies";
             this.messagesFlowLayout.ResumeLayout(false);
             this.upanel0.ResumeLayout(false);
