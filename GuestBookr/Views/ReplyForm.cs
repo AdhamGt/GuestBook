@@ -46,6 +46,8 @@ namespace GuestBook.Views
         }
         public void updateAndDisplayMessages(List<GuestBookReply> replies)
         {
+            CloseAllTabs();
+            updateUI();
             if (replies == null)
             {
                 MessageBox.Show("No Replies");
@@ -59,7 +61,7 @@ namespace GuestBook.Views
                 return;
             }
            
-            CloseAllTabs();
+          
             repliesCount = replies.Count;
             int startindex = pageIndex * pageSize;
             int endindex = startindex + pageSize;

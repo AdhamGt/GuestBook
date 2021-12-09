@@ -113,6 +113,8 @@ namespace GuestBook.Views
         }
         public void updateAndDisplayMessages(List<GuestBookMessage> messages)
         {
+            CloseAllTabs();
+            updateUI();
             if (messages == null)
             {
              
@@ -123,7 +125,7 @@ namespace GuestBook.Views
                
                 return;
             }
-            CloseAllTabs();
+          
             messagesCount = messages.Count;
             int startindex = pageIndex*pageSize;
             int endindex = startindex + pageSize;

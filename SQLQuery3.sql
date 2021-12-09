@@ -1,1 +1,1 @@
-﻿Select * from Message INNER JOIN  [User] on Message.userID = [User].userID;
+﻿DELETE FROM Message;
