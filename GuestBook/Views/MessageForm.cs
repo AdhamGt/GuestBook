@@ -62,6 +62,8 @@ namespace GuestBook.Views
             repliesCount = replies.Count;
             int startindex = pageIndex * pageSize;
             int endindex = startindex + pageSize;
+            mainPanel.Controls[1].Text = MessageController.getselectedMessage().getOwnerName();
+            mainPanel.Controls[0].Text = MessageController.getselectedMessage().message;
             for (int i = startindex, pIndex = 0; i < endindex && i < repliesCount && pIndex < 4; i++, pIndex++)
             {
                 uiPanels[pIndex].Controls[0].Text = replies[i].reply;
@@ -69,13 +71,13 @@ namespace GuestBook.Views
 
                 if (UserController.verifyOwner(replies[i].owner.userID))
                 {
-                    uiPanels[pIndex].Controls[1].Text = replies[i].getOwnerName() + " (You) ";
+                    uiPanels[pIndex].Controls[1].Text = replies[i].getOwnerName() + " (You) " + " Replied : ";
                     uiPanels[pIndex].Controls[1].ForeColor = Color.Red;
               
                 }
                 else
                 {
-                    uiPanels[pIndex].Controls[1].Text = replies[i].getOwnerName();
+                    uiPanels[pIndex].Controls[1].Text = replies[i].getOwnerName() + " Replied : ";
                     uiPanels[pIndex].Controls[1].ForeColor = Color.Blue;
              
                 }

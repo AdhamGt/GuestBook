@@ -54,11 +54,11 @@ namespace GuestBook.Controllers
         }
         public static void  updateUIFields()
         {
-            if (guestForm != null)
+            if (guestForm != null && !guestForm.IsDisposed)
             {
                 guestForm.updateAndDisplayMessages(MessageController.getMessages());
             }
-            if(repliesForm != null)
+            if(repliesForm != null && !repliesForm.IsDisposed)
             {
                 repliesForm.updateAndDisplayMessages(ReplyController.getCurrentMessageReplies());
             }
@@ -73,7 +73,7 @@ namespace GuestBook.Controllers
             {
                 repliesForm.Close();
                 repliesForm = new MessageForm();
-                repliesForm.DrawUI();
+          
             }
 
 

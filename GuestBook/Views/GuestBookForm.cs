@@ -255,22 +255,27 @@ namespace GuestBook.Views
 
         private void DeleteMessage_Click(object sender, EventArgs e)
         {
-
-            if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
+            DialogResult verifyDecision = MessageBox.Show("Are you sure you want to permenantly delete this message ?",
+                                       "Alert !",
+                                       MessageBoxButtons.YesNo);
+            if (verifyDecision == DialogResult.Yes)
             {
-                if (MessageController.DeleteViewedMessage())
+                if (MessageController.selectMessage(GetButtonIndex((Button)sender)))
                 {
-                    MessageBox.Show("Deleted");
-                    updateAndDisplayMessages(MessageController.getMessages());
+                    if (MessageController.DeleteViewedMessage())
+                    {
+                        MessageBox.Show("Deleted");
+                        updateAndDisplayMessages(MessageController.getMessages());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed");
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Failed");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Failed");
             }
         }
 
